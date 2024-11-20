@@ -45,17 +45,17 @@ ListItem.displayName = "ListItem";
 const NavigationBar = () => {
   return (
     <>
-      <div>
+      <div className="pb-4">
         <div className="flex justify-between">
           <Link to="/">
             <img
               alt="books-logo"
               src={navBarLogo}
-              className="w-[100px] mx-8 my-4"
+              className="w-[100px] mx-8 "
             />
           </Link>
 
-          <div>
+          <div className="mx-8 my-8">
             <NavigationMenu className="bg-transparent hover:bg-transparent focus:bg-transparent">
               <NavigationMenuList>
                 <NavigationMenuItem>
