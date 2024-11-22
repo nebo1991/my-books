@@ -16,8 +16,9 @@ const SignInPage = () => {
   const [error, setErrorMessage] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const handleEmail = (e: { target: { value: SetStateAction<string> } }) =>
+  const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) =>
     setEmail(e.target.value);
+
   const handlePassword = (e: { target: { value: SetStateAction<string> } }) =>
     setPassword(e.target.value);
 
