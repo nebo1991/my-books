@@ -11,19 +11,15 @@ import {
 
 const API_URL = import.meta.env.VITE_BOOKS_API;
 
-// Define interfaces for our data structures
 interface Library {
   _id: string;
-  // Add other library properties as needed
 }
 
 interface User {
   _id: string;
   library?: Library;
-  // Add other user properties as needed
 }
 
-// Define the context value interface
 interface AuthContextType {
   isLoggedIn: boolean;
   isLoading: boolean;
