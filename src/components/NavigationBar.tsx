@@ -44,7 +44,8 @@ const ListItem = React.forwardRef<React.ElementRef<"a">, ListItemProps>(
 ListItem.displayName = "ListItem";
 
 const NavigationBar = () => {
-  const { isLoggedIn, setIsLoggedIn, setUser, libraryId } = useAuthContext();
+  const { isLoggedIn, setIsLoggedIn, setUser, libraryId, setLibraryId } =
+    useAuthContext();
   const navigate = useNavigate();
   const handleLogout = () => {
     // Clear the token from localStorage
@@ -52,6 +53,7 @@ const NavigationBar = () => {
     // Reset the auth state
     setIsLoggedIn(false);
     setUser(null);
+    setLibraryId(null);
     navigate("/"); // Navigate to home or login page
   };
   return (
