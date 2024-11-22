@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import navBarLogo from "../assets/books-logo.svg";
 import aboutMiniLogo from "../assets/about-mini-logo.png";
 import * as React from "react";
@@ -12,6 +12,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import { useAuthContext } from "@/context/AuthContext";
 
 interface ListItemProps extends React.ComponentPropsWithoutRef<"a"> {
   title: string;
@@ -43,6 +44,16 @@ const ListItem = React.forwardRef<React.ElementRef<"a">, ListItemProps>(
 ListItem.displayName = "ListItem";
 
 const NavigationBar = () => {
+  const { isLoggedIn, setIsLoggedIn, setUser, libraryId } = useAuthContext();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    // Clear the token from localStorage
+    localStorage.removeItem("authToken");
+    // Reset the auth state
+    setIsLoggedIn(false);
+    setUser(null);
+    navigate("/"); // Navigate to home or login page
+  };
   return (
     <>
       <div className="pb-4">
@@ -80,36 +91,47 @@ const NavigationBar = () => {
                           </a>
                         </NavigationMenuLink>
                       </li>
-                      <ListItem
-                        href="/sign-in"
-                        title="Login"
-                        className="hover:bg-purple-300"
-                      >
-                        Login to your account
-                      </ListItem>
-                      <ListItem
-                        href="/sign-up"
-                        title="Sign up"
-                        className="hover:bg-purple-300"
-                      >
-                        Dont have account yet?
-                      </ListItem>
-                      {/* This will be rendered later when condition is introduced */}
+                      {!isLoggedIn && (
+                        <>
+                          <ListItem
+                            href="/sign-in"
+                            title="Login"
+                            className="hover:bg-purple-300"
+                          >
+                            Login to your account
+                          </ListItem>
+                          <ListItem
+                            href="/sign-up"
+                            title="Sign up"
+                            className="hover:bg-purple-300"
+                          >
+                            Dont have account yet?
+                          </ListItem>
+                        </>
+                      )}
 
-                      {/* TODO: @nebo1991 */}
-                      {/* <ListItem
-                        href="/"
-                        title="Logout"
-                      >
-                        See you soon...
-                      </ListItem> */}
-                      {/* TODO: @nebo1991 */}
-                      {/* <ListItem
-                        href="/libraries"
-                        title="Library"
-                      >
-                        Check your favourite books
-                      </ListItem> */}
+                      {isLoggedIn && !libraryId && (
+                        <ListItem href="/my-library" title="Library">
+                          Check your favourite books
+                        </ListItem>
+                      )}
+                      {isLoggedIn && libraryId && (
+                        <ListItem
+                          href={`/libraries/${libraryId}`}
+                          title="Library"
+                        >
+                          Check your favourite books
+                        </ListItem>
+                      )}
+                      {isLoggedIn && (
+                        <ListItem
+                          href="/"
+                          title="Logout"
+                          onClick={handleLogout}
+                        >
+                          See you soon...
+                        </ListItem>
+                      )}
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
