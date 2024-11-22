@@ -32,8 +32,9 @@ const SignUpPage = () => {
 
       console.log(response.data);
       setSuccess(true);
-    } catch (error) {
-      setError("Something went wrong");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      setError(error.response.data.message);
       console.log(error);
     }
   };
