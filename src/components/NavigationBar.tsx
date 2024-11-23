@@ -1,4 +1,4 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import navBarLogo from "../assets/books-logo.svg";
 import aboutMiniLogo from "../assets/about-mini-logo.png";
 import * as React from "react";
@@ -113,7 +113,11 @@ const NavigationBar = () => {
                       )}
 
                       {isLoggedIn && !libraryId && (
-                        <ListItem href="/my-library" title="Library">
+                        <ListItem
+                          href="/add-library"
+                          title="Library"
+                          className="hover:bg-purple-300"
+                        >
                           Check your favourite books
                         </ListItem>
                       )}
@@ -121,6 +125,7 @@ const NavigationBar = () => {
                         <ListItem
                           href={`/libraries/${libraryId}`}
                           title="Library"
+                          className="hover:bg-purple-300"
                         >
                           Check your favourite books
                         </ListItem>
@@ -130,6 +135,7 @@ const NavigationBar = () => {
                           href="/"
                           title="Logout"
                           onClick={handleLogout}
+                          className="hover:bg-purple-300"
                         >
                           See you soon...
                         </ListItem>
