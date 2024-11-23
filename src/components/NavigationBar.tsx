@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import navBarLogo from "../assets/books-logo.svg";
 import aboutMiniLogo from "../assets/about-mini-logo.png";
+import { BookText } from "lucide-react";
+
 import * as React from "react";
 import { cn } from "../lib/utils";
 
@@ -48,13 +50,11 @@ const NavigationBar = () => {
     useAuthContext();
   const navigate = useNavigate();
   const handleLogout = () => {
-    // Clear the token from localStorage
     localStorage.removeItem("authToken");
-    // Reset the auth state
     setIsLoggedIn(false);
     setUser(null);
     setLibraryId(null);
-    navigate("/"); // Navigate to home or login page
+    navigate("/");
   };
   return (
     <>
@@ -74,25 +74,46 @@ const NavigationBar = () => {
                 <NavigationMenuItem>
                   {/* TODO: @nebo - Also conditional for different text once User is logged in. */}
                   <NavigationMenuTrigger className="bg-transparent">
-                    Getting started
+                    <BookText className="h-6 w-6" />
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="bg-purple-200">
                     <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] ">
-                      <li className="row-span-3">
-                        <NavigationMenuLink asChild>
-                          <a
-                            className="flex h-full w-full select-none flex-col justify-end rounded-md bg-purple-300 from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                            href="/about-us"
-                          >
-                            <img src={aboutMiniLogo} />
-                            <div className=" text-xl font-medium">About us</div>
-                            <p className="text-sm leading-tight text-muted-foreground">
-                              Click here to find out more about our beautiful
-                              team.
-                            </p>
-                          </a>
-                        </NavigationMenuLink>
-                      </li>
+                      {!isLoggedIn && (
+                        <li className="row-span-3">
+                          <NavigationMenuLink asChild>
+                            <a
+                              className="flex h-full w-full select-none flex-col justify-end rounded-md bg-purple-300 from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                              href="/about-us"
+                            >
+                              <img src={aboutMiniLogo} />
+                              <div className=" text-xl font-medium">
+                                About us
+                              </div>
+                              <p className="text-sm leading-tight text-muted-foreground">
+                                Click here to find out more about our beautiful
+                                team.
+                              </p>
+                            </a>
+                          </NavigationMenuLink>
+                        </li>
+                      )}
+                      {isLoggedIn && (
+                        <li className="row-span-3">
+                          <NavigationMenuLink asChild>
+                            <a
+                              className="flex h-full w-full select-none flex-col justify-end rounded-md bg-purple-300 from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                              href="/books"
+                            >
+                              <img src={aboutMiniLogo} />
+                              <div className=" text-xl font-medium">Books</div>
+                              <p className="text-sm  text-black">
+                                Start exploring, there are plenty books out
+                                there!
+                              </p>
+                            </a>
+                          </NavigationMenuLink>
+                        </li>
+                      )}
                       {!isLoggedIn && (
                         <>
                           <ListItem
@@ -121,6 +142,16 @@ const NavigationBar = () => {
                           Check your favourite books
                         </ListItem>
                       )}
+                      {isLoggedIn && (
+                        <ListItem
+                          href="/"
+                          title="Books"
+                          onClick={handleLogout}
+                          className="hover:bg-purple-300"
+                        >
+                          Add book
+                        </ListItem>
+                      )}
                       {isLoggedIn && libraryId && (
                         <ListItem
                           href={`/libraries/${libraryId}`}
@@ -130,6 +161,7 @@ const NavigationBar = () => {
                           Check your favourite books
                         </ListItem>
                       )}
+
                       {isLoggedIn && (
                         <ListItem
                           href="/"
