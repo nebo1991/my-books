@@ -6,6 +6,8 @@ import AboutUsPage from "./pages/AboutUsPage";
 import HomePage from "./pages/HomePage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
+import CreateNewLibraryPage from "./pages/CreateNewLibraryPage";
+import LibraryDetailsPage from "./pages/LibraryDetailsPage";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/sign-in" element={<SignInPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
+        <Route path="/add-library" element={<CreateNewLibraryPage />} />
+        <Route path="/my-library/:id" element={<LibraryDetailsPage />} />
       </Routes>
     </>
   );
