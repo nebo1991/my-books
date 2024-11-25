@@ -20,7 +20,7 @@ interface Book {
 cardio.register();
 
 const BookDetailsPage = () => {
-  const { isLoggedIn, libraryId } = useAuthContext();
+  const { isLoggedIn, libraryId, user } = useAuthContext();
 
   const { bookId } = useParams<{ bookId: string }>();
   const [book, setBook] = useState<Book>({});
@@ -107,17 +107,19 @@ const BookDetailsPage = () => {
           {book.description}
         </p>
         <div className="my-80">
-          <button
-            className="btn btn-outline border-transparent hover:bg-red-400 my-4 text-black"
-            onClick={() => {
-              const modal = document.getElementById(
-                "my_modal_3"
-              ) as HTMLDialogElement;
-              modal?.showModal();
-            }}
-          >
-            Remove book
-          </button>
+          {book?.createdBy === user?._id && (
+            <button
+              className="btn btn-outline border-transparent hover:bg-red-400 my-4 text-black"
+              onClick={() => {
+                const modal = document.getElementById(
+                  "my_modal_3"
+                ) as HTMLDialogElement;
+                modal?.showModal();
+              }}
+            >
+              Remove book
+            </button>
+          )}
           <dialog id="my_modal_3" className="modal">
             <div className="modal-box bg-red-400">
               <form method="dialog">

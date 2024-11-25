@@ -10,6 +10,7 @@ import CreateNewLibraryPage from "./pages/CreateNewLibraryPage";
 import LibraryDetailsPage from "./pages/LibraryDetailsPage";
 import ListBooksPage from "./pages/ListBooksPage";
 import BookDetailsPage from "./pages/BookDetailsPage";
+import AddNewBookPage from "./pages/AddNewBookPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/my-library/:id" element={<LibraryDetailsPage />} />
         <Route path="/books" element={<ListBooksPage />} />
         <Route path="/books/:bookId" element={<BookDetailsPage />} />
+        <Route path="/books/add-new" element={<AddNewBookPage />} />
       </Routes>
     </>
   );

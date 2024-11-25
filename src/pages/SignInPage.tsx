@@ -11,8 +11,8 @@ const API_URL = import.meta.env.VITE_BOOKS_API;
 
 const SignInPage = () => {
   const { setIsLoggedIn, setUser, setLibraryId } = useAuthContext();
-  const [email, setEmail] = useState<string | "">("");
-  const [password, setPassword] = useState<string | "">("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [error, setErrorMessage] = useState<string | null>(null);
   const navigate = useNavigate();
 
