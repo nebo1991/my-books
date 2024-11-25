@@ -146,7 +146,6 @@ const NavigationBar = () => {
                         <ListItem
                           href="/"
                           title="Books"
-                          onClick={handleLogout}
                           className="hover:bg-purple-300"
                         >
                           Add book
