@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import teamPhoto from "../assets/welcome-back.png";
+import teamPhoto from "../assets/sign-up-photo.png";
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -65,7 +65,7 @@ const SignUpPage = () => {
             <form onSubmit={handleSubmit}>
               <div className="flex justify-center mb-6">
                 <div>
-                  <img src={teamPhoto} className="w-[200px] mx-6" />
+                  <img src={teamPhoto} className="w-[200px] mx-6 ml-[100px]" />
                   <h1 className="font-bold tracking-tight text-purple-800 sm:text-4xl">
                     Join our book community
                   </h1>
