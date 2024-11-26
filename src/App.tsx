@@ -22,7 +22,7 @@ function App() {
         <Route path="/sign-in" element={<SignInPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route path="/add-library" element={<CreateNewLibraryPage />} />
-        <Route path="/my-library/:id" element={<LibraryDetailsPage />} />
+        <Route path="/libraries/:idLibrary" element={<LibraryDetailsPage />} />
         <Route path="/books" element={<ListBooksPage />} />
         <Route path="/books/:bookId" element={<BookDetailsPage />} />
         <Route path="/books/add-new" element={<AddNewBookPage />} />
