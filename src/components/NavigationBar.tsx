@@ -144,11 +144,11 @@ const NavigationBar = () => {
                       )}
                       {isLoggedIn && (
                         <ListItem
-                          href="/"
-                          title="Books"
+                          href="/books/add-new"
+                          title="Add book"
                           className="hover:bg-purple-300"
                         >
-                          Add book
+                          Add your books
                         </ListItem>
                       )}
                       {isLoggedIn && libraryId && (
