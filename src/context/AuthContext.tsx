@@ -12,11 +12,11 @@ import {
 const API_URL = import.meta.env.VITE_BOOKS_API;
 
 interface Library {
-  _id: string;
+  id: number;
 }
 
 interface User {
-  _id: string;
+  id: number;
   library?: Library;
 }
 
@@ -59,8 +59,8 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
           const userData = response.data;
           setUser(userData);
 
-          if (userData.library && userData.library._id) {
-            setLibraryId(userData.library._id);
+          if (userData.library && userData.library.id) {
+            setLibraryId(`${userData.library.id}`);
           } else {
             setLibraryId(null);
           }
