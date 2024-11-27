@@ -6,6 +6,7 @@ import axios from "axios";
 import { SetStateAction, useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const API_URL = import.meta.env.VITE_BOOKS_API;
 
@@ -13,7 +14,6 @@ const SignInPage = () => {
   const { setIsLoggedIn, setUser, setLibraryId } = useAuthContext();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [error, setErrorMessage] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -25,12 +25,12 @@ const SignInPage = () => {
   const handleLoginSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (!email || !password) {
-      setErrorMessage("All inputs are required");
+      toast.error("All inputs are required", { position: "top-center" });
       return;
     }
 
     if (!validator.isEmail(email)) {
-      setErrorMessage("Please enter a valid email");
+      toast.error("Please enter a valid email", { position: "top-center" });
       return;
     }
 
@@ -41,13 +41,23 @@ const SignInPage = () => {
       });
 
       if (response.status !== 200) {
-        setErrorMessage("Something went wrong");
+        toast.error("Something went wrong", { position: "top-center" });
         return;
       }
 
       localStorage.setItem("authToken", response.data.authToken);
 
       // Set state
+      toast.success(" 📖 Welcome friend!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       setIsLoggedIn(true);
       setLibraryId(null);
       setUser(response.data.user);
@@ -55,7 +65,7 @@ const SignInPage = () => {
       navigate("/books");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      setErrorMessage(error.response.data.message);
+      toast.error(error.response.data.message, { position: "top-center" });
       console.log(error);
     }
   };
@@ -73,13 +83,11 @@ const SignInPage = () => {
                 </h1>
               </div>
             </div>
-            {error && (
-              <div className="text-red-500 text-center mb-4">{error}</div>
-            )}
+
             <div>
               <label className=" flex items-center gap-2 bg-purple-200 mb-4 rounded-md ">
                 <Input
-                  type="email"
+                  type="text"
                   className="grow p-5 rounded-md border-s-0 focus:border-purple-600 text-purple-600"
                   placeholder="Email"
                   value={email}
