@@ -11,22 +11,31 @@ import LibraryDetailsPage from "./pages/LibraryDetailsPage";
 import ListBooksPage from "./pages/ListBooksPage";
 import BookDetailsPage from "./pages/BookDetailsPage";
 import AddNewBookPage from "./pages/AddNewBookPage";
+import FooterBar from "./components/FooterBar";
 
 function App() {
   return (
     <>
-      <NavigationBar />
-      <Routes>
-        <Route path="/about-us" element={<AboutUsPage />} />
-        <Route path="/" element={<HomePage />} />
-        <Route path="/sign-in" element={<SignInPage />} />
-        <Route path="/sign-up" element={<SignUpPage />} />
-        <Route path="/add-library" element={<CreateNewLibraryPage />} />
-        <Route path="/libraries/:idLibrary" element={<LibraryDetailsPage />} />
-        <Route path="/books" element={<ListBooksPage />} />
-        <Route path="/books/:bookId" element={<BookDetailsPage />} />
-        <Route path="/books/add-new" element={<AddNewBookPage />} />
-      </Routes>
+      <div className="flex flex-col min-h-screen">
+        <NavigationBar />
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/about-us" element={<AboutUsPage />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/sign-in" element={<SignInPage />} />
+            <Route path="/sign-up" element={<SignUpPage />} />
+            <Route path="/add-library" element={<CreateNewLibraryPage />} />
+            <Route
+              path="/libraries/:idLibrary"
+              element={<LibraryDetailsPage />}
+            />
+            <Route path="/books" element={<ListBooksPage />} />
+            <Route path="/books/:bookId" element={<BookDetailsPage />} />
+            <Route path="/books/add-new" element={<AddNewBookPage />} />
+          </Routes>
+        </div>
+        <FooterBar />
+      </div>
     </>
   );
 }
