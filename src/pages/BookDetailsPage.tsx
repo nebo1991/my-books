@@ -8,13 +8,13 @@ import { useAuthContext } from "../context/AuthContext";
 const API_URL = import.meta.env.VITE_BOOKS_API;
 
 interface Book {
-  _id?: string;
+  id?: number;
   title?: string;
   author?: string;
   description?: string;
   pages?: number;
   image?: string;
-  createdBy?: string;
+  createdById?: number;
 }
 
 cardio.register();
@@ -107,7 +107,7 @@ const BookDetailsPage = () => {
           {book.description}
         </p>
         <div className="my-80">
-          {book?.createdBy === user?._id && (
+          {book?.createdById === user?.id && (
             <button
               className="btn btn-outline border-transparent hover:bg-red-400 my-4 text-black"
               onClick={() => {

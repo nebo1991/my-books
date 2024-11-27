@@ -5,13 +5,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
 import { useAuthContext } from "../context/AuthContext";
 
-// interface LibraryResponse {
-//   library: {
-//     id: string | number;
-//     name: string;
-//   };
-// }
-
 const API_URL = import.meta.env.VITE_BOOKS_API;
 
 const CreateNewLibraryPage = () => {
@@ -40,7 +33,7 @@ const CreateNewLibraryPage = () => {
           },
         }
       );
-      const libraryId = response.data.library._id;
+      const libraryId = response.data.library.id;
       setTimeout(() => {
         setIsLoading(false);
         navigate(`/my-library/${libraryId}`);

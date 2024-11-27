@@ -6,21 +6,21 @@ import { Skeleton } from "@/components/ui/skeleton";
 const API_URL = import.meta.env.VITE_BOOKS_API;
 
 interface Book {
-  _id: string;
+  id: number;
   title: string;
   author: string;
   description: string;
   pages: number;
   image: string;
-  createdBy: string;
+  createdById: number;
   __v: number;
 }
 
 interface Library {
-  _id: string;
+  id: number;
   name: string;
   books: Book[];
-  createdBy: string;
+  createdById: number;
   __v: number;
 }
 
@@ -121,8 +121,8 @@ const LibraryDetailsPage = () => {
       </div>
       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
         {library.books.map((book: Book) => (
-          <div key={book._id} className="group relative">
-            <Link to={`/books/${book._id}`}>
+          <div key={book.id} className="group relative">
+            <Link to={`/books/${book.id}`}>
               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                 <img
                   alt="book-cover"
@@ -137,7 +137,7 @@ const LibraryDetailsPage = () => {
                 <p className="mt-1 text-sm text-gray-500">{book.author}</p>
               </div>
               <button
-                onClick={() => handleRemoveBook(book._id)}
+                onClick={() => handleRemoveBook(`${book.id}`)}
                 className="text-red-500 hover:text-red-700"
                 title="Remove Book"
               >
