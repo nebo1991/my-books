@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Textarea } from "@/components/ui/textarea";
 
 import { cardio } from "ldrs";
 import { useAuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const API_URL = import.meta.env.VITE_BOOKS_API;
 
@@ -189,7 +191,7 @@ const AddNewBookPage = () => {
                 Book description
               </label>
               <div className="mt-2">
-                <textarea
+                <Textarea
                   id="book-description"
                   name="book-description"
                   rows={3}
@@ -197,24 +199,22 @@ const AddNewBookPage = () => {
                   onChange={handleDescription}
                   placeholder="Add some details about this book? Why should we read it?"
                   className="textarea textarea-secondary w-full bg-white text-black rounded-md"
-                  // className="grow p-5 rounded-md border-s-0 focus:border-purple-600 text-purple-600"
                 />
               </div>
             </div>
           </div>
 
           <div className="mt-6 flex items-center justify-end gap-x-6">
-            <Link to="/books">
-              <p className="text-sm font-semibold leading-6 text-gray-900">
-                Cancel
-              </p>
-            </Link>
-            <button
+            <Button variant="ghost">
+              <Link to="/books">Cancel</Link>
+            </Button>
+            <Button
+              disabled={!title || !author || !pages || !image || !description}
               type="submit"
-              className="rounded-md bg-purple-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="w-[75px] rounded-md bg-purple-500 px-3 py-2 text-sm font-semibold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-purple-300"
             >
               Save
-            </button>
+            </Button>
           </div>
         </div>
       </form>
