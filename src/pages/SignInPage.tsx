@@ -62,7 +62,7 @@ const SignInPage = () => {
       setLibraryId(null);
       setUser(response.data.user);
 
-      navigate("/books");
+      navigate("/");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error(error.response.data.message, { position: "top-center" });
