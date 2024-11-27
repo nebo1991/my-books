@@ -4,6 +4,7 @@ import teamPhoto from "../assets/welcome-back.png";
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const API_URL = import.meta.env.VITE_BOOKS_API;
 
@@ -11,7 +12,6 @@ const SignUpPage = () => {
   const [email, setEmail] = useState<string | "">("");
   const [name, setName] = useState<string | "">("");
   const [password, setPassword] = useState<string | "">("");
-  const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
 
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -34,7 +34,7 @@ const SignUpPage = () => {
       setSuccess(true);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      setError(error.response.data.message);
+      toast.error(error.response.data.message, { position: "top-center" });
       console.log(error);
     }
   };
@@ -71,13 +71,11 @@ const SignUpPage = () => {
                   </h1>
                 </div>
               </div>
-              {error && (
-                <div className="text-red-500 text-center mb-4">{error}</div>
-              )}
+
               <div>
                 <label className=" flex items-center gap-2 bg-purple-200 mb-4 rounded-md ">
                   <Input
-                    type="email"
+                    type="text"
                     className="grow p-5 rounded-md border-s-0 focus:border-purple-600 text-purple-600"
                     placeholder="Email"
                     value={email}
@@ -113,7 +111,6 @@ const SignUpPage = () => {
               </div>
             </form>
           )}
-          ;
         </div>
       </div>
     </>
