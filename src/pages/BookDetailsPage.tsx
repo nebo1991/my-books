@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { cardio } from "ldrs";
 import { useAuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
+import { Trash2 } from "lucide-react";
 
 const API_URL = import.meta.env.VITE_BOOKS_API;
 
@@ -109,7 +110,11 @@ const BookDetailsPage = () => {
   ) : (
     <div className="flex py-40 gap-16">
       <div className="ml-12">
-        <img src={book.image} className="w-[800px] ml-10" alt={book.title} />
+        <img
+          src={book.image}
+          className="w-[800px] min-w-80 ml-10"
+          alt={book.title}
+        />
       </div>
       <div>
         <h1 className="text-balance text-5xl font-semibold tracking-tight text-black sm:text-7xl text-left">
@@ -122,36 +127,27 @@ const BookDetailsPage = () => {
           {book.description}
         </p>
         <div className="my-80">
-          {book?.createdById === user?.id && (
-            <button
-              className="btn btn-outline border-transparent hover:bg-red-400 my-4 text-black"
-              onClick={() => {
-                const modal = document.getElementById(
-                  "my_modal_3"
-                ) as HTMLDialogElement;
-                modal?.showModal();
-              }}
-            >
-              Remove book
-            </button>
-          )}
-          <dialog id="my_modal_3" className="modal">
-            <div className="modal-box bg-red-400">
+          <dialog id="my_modal_3" className="modal bg-transparent">
+            <div className="modal-box bg-red-300 shadow-xl rounded-lg p-6">
               <form method="dialog">
-                <div>
-                  <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-white">
-                    ✕
-                  </button>
-                </div>
+                <button
+                  className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-white hover:text-gray-300 transition-transform transform hover:scale-110"
+                  aria-label="Close"
+                >
+                  ✕
+                </button>
               </form>
 
-              <h3 className="font-bold text-lg text-white">
-                Are you sure you want to delete this book
+              <h3 className="font-bold text-lg text-white text-center mb-4">
+                Are you sure you want to delete this book?
               </h3>
-              <div className="flex gap-48 mt-8">
-                <p className="py-4 text-white">Press `Delete` to confirm</p>
+              <p className="py-4 text-white text-center">
+                Press <strong>`Delete`</strong> to confirm.
+              </p>
+
+              <div className="flex justify-center gap-4 mt-8">
                 <button
-                  className="text-white btn bg-transparent border-solid border-red-600 hover:bg-red-500 hover:border-red-600"
+                  className="btn bg-white text-red-600 border border-red-600 px-6 py-2 rounded-lg hover:bg-red-600 hover:text-white transition-all duration-200"
                   onClick={() => {
                     if (bookId) {
                       deleteBook(bookId);
@@ -176,6 +172,19 @@ const BookDetailsPage = () => {
         >
           ❤️
         </button>
+        {book?.createdById === user?.id && (
+          <button
+            className="btn btn-outline border-transparent  my-4 text-black"
+            onClick={() => {
+              const modal = document.getElementById(
+                "my_modal_3"
+              ) as HTMLDialogElement;
+              modal?.showModal();
+            }}
+          >
+            <Trash2 size={30} color="#c828c3" strokeWidth={1} />
+          </button>
+        )}
       </div>
     </div>
   );
