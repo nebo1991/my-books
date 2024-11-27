@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { cardio } from "ldrs";
 import { useAuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
+import { Input } from "@/components/ui/input";
 
 const API_URL = import.meta.env.VITE_BOOKS_API;
 
@@ -94,20 +95,20 @@ const AddNewBookPage = () => {
       <form onSubmit={handleSubmit}>
         <div className="space-y-12 mt-20 max-w-4xl mx-auto">
           <div className="border-b border-gray-900/10 pb-12">
-            <h2 className="text-base font-semibold leading-7 text-gray-900 flex justify-center items-center">
+            <h1 className="text-balance text-4xl font-bold tracking-tight text-purple-800 sm:text-6xl w-[400x]">
               Add new book
-            </h2>
+            </h1>
 
             <div className="mt-10 flex flex-wrap gap-6">
               <div className="flex-1 min-w-[250px]">
                 <label
                   htmlFor="book-title"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-xl font-medium leading-6 text-purple-500"
                 >
                   Title
                 </label>
                 <div className="mt-2">
-                  <input
+                  <Input
                     id="book-title"
                     name="book-title"
                     type="text"
@@ -122,12 +123,12 @@ const AddNewBookPage = () => {
               <div className="flex-1 min-w-[250px]">
                 <label
                   htmlFor="book-author"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-xl font-medium leading-6 text-purple-500"
                 >
                   Author
                 </label>
                 <div className="mt-2">
-                  <input
+                  <Input
                     id="book-author"
                     name="book-author"
                     type="text"
@@ -142,12 +143,12 @@ const AddNewBookPage = () => {
               <div className="flex-1 min-w-[250px]">
                 <label
                   htmlFor="book-pages"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-xl font-medium leading-6 text-purple-500"
                 >
                   Pages
                 </label>
                 <div className="mt-2">
-                  <input
+                  <Input
                     id="book-pages"
                     name="book-pages"
                     type="number"
@@ -162,12 +163,12 @@ const AddNewBookPage = () => {
               <div className="flex-1 min-w-[250px]">
                 <label
                   htmlFor="book-image-url"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-xl font-medium leading-6 text-purple-500"
                 >
                   Image URL
                 </label>
                 <div className="mt-2">
-                  <input
+                  <Input
                     id="book-image-url"
                     name="book-image-url"
                     type="text"
@@ -183,7 +184,7 @@ const AddNewBookPage = () => {
             <div className="mt-10 w-full">
               <label
                 htmlFor="book-description"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-xl font-medium leading-6 text-purple-500"
               >
                 Book description
               </label>
@@ -195,7 +196,8 @@ const AddNewBookPage = () => {
                   value={description}
                   onChange={handleDescription}
                   placeholder="Add some details about this book? Why should we read it?"
-                  className="textarea textarea-secondary w-full bg-white text-black"
+                  className="textarea textarea-secondary w-full bg-white text-black rounded-md"
+                  // className="grow p-5 rounded-md border-s-0 focus:border-purple-600 text-purple-600"
                 />
               </div>
             </div>
@@ -209,7 +211,7 @@ const AddNewBookPage = () => {
             </Link>
             <button
               type="submit"
-              className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="rounded-md bg-purple-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Save
             </button>
