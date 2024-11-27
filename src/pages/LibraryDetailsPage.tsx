@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 import { Skeleton } from "@/components/ui/skeleton";
+import { toast } from "react-toastify";
 const API_URL = import.meta.env.VITE_BOOKS_API;
 
 interface Book {
@@ -55,6 +56,16 @@ const LibraryDetailsPage = () => {
           },
         }
       );
+      toast.success(" 💔 Successfully removed a book from the library.", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       setLibrary(response.data);
     } catch (error) {
       console.error("Error removing book from library:", error);
