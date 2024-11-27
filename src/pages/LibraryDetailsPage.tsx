@@ -127,9 +127,9 @@ const LibraryDetailsPage = () => {
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="text-center mb-8">
-        <h2 className="text-balance text-4xl font-bold tracking-tight text-purple-800 sm:text-6xl w-[400x]">
+        <h1 className="text-balance text-4xl font-bold tracking-tight text-purple-800 sm:text-6xl w-[400x]">
           {library.name}
-        </h2>
+        </h1>
       </div>
       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
         {library.books.map((book: Book) => (
