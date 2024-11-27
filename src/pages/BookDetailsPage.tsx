@@ -25,6 +25,7 @@ const BookDetailsPage = () => {
   const { bookId } = useParams<{ bookId: string }>();
   const [book, setBook] = useState<Book>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const navigate = useNavigate();
   const token = localStorage.getItem("authToken");
@@ -73,7 +74,9 @@ const BookDetailsPage = () => {
           },
         }
       );
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      setError(error.response.data.message);
       console.log(error);
     }
   };
@@ -99,11 +102,13 @@ const BookDetailsPage = () => {
         <img src={book.image} className="w-[800px] ml-10" alt={book.title} />
       </div>
       <div>
-        <h1 className="text-balance text-5xl font-semibold tracking-tight text-black sm:text-7xl">
+        <h1 className="text-balance text-5xl font-semibold tracking-tight text-black sm:text-7xl text-left">
           {book.title}
         </h1>
-        <p className="mt-2 text-pretty text-2xl text-gray-600">{book.author}</p>
-        <p className="mt-4 text-pretty text-xl font-medium text-gray-500 sm:text-xl/8">
+        <p className="mt-2 text-pretty text-2xl text-gray-600 text-left">
+          {book.author}
+        </p>
+        <p className="mt-4 text-pretty text-xl font-medium text-gray-500 sm:text-xl/8 text-left">
           {book.description}
         </p>
         <div className="my-80">
@@ -150,16 +155,23 @@ const BookDetailsPage = () => {
           </dialog>
         </div>
       </div>
-      <button
-        className="btn btn-sm btn-circle btn-ghost my-6"
-        onClick={() => {
-          if (bookId) {
-            addBookToLibrary(bookId);
-          }
-        }}
-      >
-        ❤️
-      </button>
+      <div className="flex flex-col items-center">
+        <button
+          className="btn btn-sm btn-circle btn-ghost my-2"
+          onClick={() => {
+            if (bookId) {
+              addBookToLibrary(bookId);
+            }
+          }}
+        >
+          ❤️
+        </button>
+        {error && (
+          <div className="text-red-500 text-center mt-2 max-w-xs w-36">
+            {error}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
