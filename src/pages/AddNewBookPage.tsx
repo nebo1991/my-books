@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { cardio } from "ldrs";
 import { useAuthContext } from "../context/AuthContext";
+import { toast } from "react-toastify";
 
 const API_URL = import.meta.env.VITE_BOOKS_API;
 
@@ -67,6 +68,16 @@ const AddNewBookPage = () => {
 
       setTimeout(() => {
         setIsLoading(false);
+        toast.success("📚 Book successfully created.", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
         navigate("/books");
       }, 3000);
     } catch (error) {

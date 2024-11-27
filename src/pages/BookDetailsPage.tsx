@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { cardio } from "ldrs";
 import { useAuthContext } from "../context/AuthContext";
+import { toast } from "react-toastify";
 
 const API_URL = import.meta.env.VITE_BOOKS_API;
 
@@ -25,7 +26,6 @@ const BookDetailsPage = () => {
   const { bookId } = useParams<{ bookId: string }>();
   const [book, setBook] = useState<Book>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
 
   const navigate = useNavigate();
   const token = localStorage.getItem("authToken");
@@ -74,9 +74,19 @@ const BookDetailsPage = () => {
           },
         }
       );
+      toast.success(" ❤️ Successfully added to library!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      setError(error.response.data.message);
+      toast.error(error.response.data.message, { position: "top-center" });
       console.log(error);
     }
   };
@@ -166,11 +176,6 @@ const BookDetailsPage = () => {
         >
           ❤️
         </button>
-        {error && (
-          <div className="text-red-500 text-center mt-2 max-w-xs w-36">
-            {error}
-          </div>
-        )}
       </div>
     </div>
   );
