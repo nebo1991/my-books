@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import teamPhoto from "../assets/sign-up.png";
+import spacePhoto from "../assets/space.png";
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -47,15 +48,17 @@ const SignUpPage = () => {
             <div className="text-center">
               <div className="flex justify-center items-center ">
                 <h1 className="font-bold tracking-tight text-green-500 sm:text-6xl w-full text-center">
-                  Sign up successful 🚀
+                  Sign up successful
                 </h1>
               </div>
-              <p className="mt-4 text-lg text-gray-600">
-                You can now log in to your account.
-              </p>
+              <img
+                src={spacePhoto}
+                alt="sign-up-successful-photo"
+                className="ml-16 mt-6"
+              />
               <div className="flex justify-center mt-6">
                 <Link to="/sign-in">
-                  <p className="text-lg font-semibold leading-6 text-gray-900 my-3 hover:text-purple-400">
+                  <p className="text-lg font-sans leading-6 text-gray-900 my-3 hover:text-purple-400">
                     Go to Login <span aria-hidden="true">&rarr;</span>
                   </p>
                 </Link>
