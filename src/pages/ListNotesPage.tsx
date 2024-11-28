@@ -61,7 +61,7 @@ const ListNotesPage = () => {
                 return (
                   <Link key={note.id} to={`/notes/${note.id}`}>
                     <div className="group relative">
-                      <div className="flex items-center justify-center aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-purple-200 text-purple-700 text-lg font-semibold text-center px-4 py-2 lg:aspect-none lg:h-80">
+                      <div className="flex items-center justify-center aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-purple-200 text-purple-700 text-lg font-semibold text-center px-4 py-2 lg:aspect-none lg:h-40">
                         {note.title.length > 50
                           ? `${note.title.substring(0, 50)}...`
                           : note.title}

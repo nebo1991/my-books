@@ -93,7 +93,7 @@ const AddNewNotePage = () => {
                   htmlFor="book-title"
                   className="block text-xl font-medium leading-6 text-purple-500"
                 >
-                  N
+                  Title
                 </label>
                 <div className="mt-2">
                   <Input
@@ -102,7 +102,7 @@ const AddNewNotePage = () => {
                     type="text"
                     value={title}
                     onChange={handleTitle}
-                    placeholder="Enter book title"
+                    placeholder="Enter note title"
                     className="input input-bordered input-secondary w-full bg-white text-black"
                   />
                 </div>
@@ -110,12 +110,6 @@ const AddNewNotePage = () => {
             </div>
 
             <div className="mt-10 w-full">
-              <label
-                htmlFor="book-description"
-                className="block text-xl font-medium leading-6 text-purple-500"
-              >
-                Note description
-              </label>
               <div className="mt-2">
                 <Textarea
                   id="book-description"
@@ -123,7 +117,7 @@ const AddNewNotePage = () => {
                   rows={3}
                   value={description}
                   onChange={handleDescription}
-                  placeholder="Add some details about this book? Why should we read it?"
+                  placeholder="Write your note here..."
                   className="textarea textarea-secondary w-full bg-white text-black rounded-md"
                 />
               </div>
