@@ -153,7 +153,7 @@ const NavigationBar = () => {
                       )}
                       {isLoggedIn && libraryId && (
                         <ListItem
-                          href={`/libraries/${libraryId}`}
+                          href={`/my-library/${libraryId}`}
                           title="Library"
                           className="hover:bg-purple-300"
                         >

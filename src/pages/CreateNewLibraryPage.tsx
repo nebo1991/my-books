@@ -22,27 +22,32 @@ const CreateNewLibraryPage = () => {
     setIsLoading(true);
 
     try {
+      // Send the POST request to create the library
       const response = await axios.post(
         `${API_URL}/libraries`,
         {
-          name,
+          name, // Library name from the form input
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`, // Add the auth token to the request header
           },
         }
       );
-      const libraryId = response.data.library.id;
+
+      const libraryId = response.data.id; // Adjusted to match the response format
+
+      // Navigate to the newly created library's page
       setTimeout(() => {
         setIsLoading(false);
         navigate(`/my-library/${libraryId}`);
-      }, 3000);
+      }, 3000); // Optional delay, can be adjusted or removed if not needed
     } catch (error) {
       setIsLoading(false);
-      console.log(error);
+      console.log(error); // Log any error that occurs during the request
     }
   };
+
   if (isLoggedIn)
     return isLoading ? (
       <>
