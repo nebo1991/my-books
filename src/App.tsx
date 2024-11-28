@@ -10,8 +10,11 @@ import CreateNewLibraryPage from "./pages/CreateNewLibraryPage";
 import LibraryDetailsPage from "./pages/LibraryDetailsPage";
 import ListBooksPage from "./pages/ListBooksPage";
 import BookDetailsPage from "./pages/BookDetailsPage";
-import AddNewBookPage from "./pages/AddNewBookPage";
+import AddNewBookPage from "./pages/AddNewNotePage";
 import FooterBar from "./components/FooterBar";
+import AddNewNotePage from "./pages/AddNewNotePage";
+import ListNotesPage from "./pages/ListNotesPage";
+import NoteDetailsPage from "./pages/NoteDetailsPage";
 
 function App() {
   return (
@@ -26,12 +29,15 @@ function App() {
             <Route path="/sign-up" element={<SignUpPage />} />
             <Route path="/add-library" element={<CreateNewLibraryPage />} />
             <Route
-              path="/libraries/:idLibrary"
+              path="/my-library/:idLibrary"
               element={<LibraryDetailsPage />}
             />
             <Route path="/books" element={<ListBooksPage />} />
             <Route path="/books/:bookId" element={<BookDetailsPage />} />
+            <Route path="/notes/:noteId" element={<NoteDetailsPage />} />
             <Route path="/books/add-new" element={<AddNewBookPage />} />
+            <Route path="/notes/add-new" element={<AddNewNotePage />} />
+            <Route path="/notes/" element={<ListNotesPage />} />
           </Routes>
         </div>
         <FooterBar />

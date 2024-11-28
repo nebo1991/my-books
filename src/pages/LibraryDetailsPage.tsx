@@ -31,6 +31,8 @@ const LibraryDetailsPage = () => {
   const [library, setLibrary] = useState<Library | null>(null);
   const token = localStorage.getItem("authToken");
 
+  console.log("Auth token:", token);
+
   // Fetch library details
   const fetchLibrary = async (idLibrary: string) => {
     try {
@@ -39,6 +41,7 @@ const LibraryDetailsPage = () => {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log("Fetched library:", response.data); // Debugging log
       setLibrary(response.data);
     } catch (error) {
       console.error("Error fetching library:", error);
@@ -74,6 +77,7 @@ const LibraryDetailsPage = () => {
 
   useEffect(() => {
     if (idLibrary) {
+      console.log("Fetching library with ID:", idLibrary); // Debugging log
       fetchLibrary(idLibrary);
     }
   }, [idLibrary]);
@@ -130,6 +134,13 @@ const LibraryDetailsPage = () => {
         <h1 className="text-balance text-4xl font-bold tracking-tight text-purple-800 sm:text-6xl w-[400x]">
           {library.name}
         </h1>
+      </div>
+      <div className="flex justify-end">
+        <Link to="/notes">
+          <button className="btn btn-circle btn-outline border-solid border-transparent hover:bg-purple-300">
+            Notes and Quotes
+          </button>
+        </Link>
       </div>
       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
         {library.books.map((book: Book) => (
