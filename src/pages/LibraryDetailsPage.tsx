@@ -30,12 +30,14 @@ const LibraryDetailsPage = () => {
   const { idLibrary } = useParams<{ idLibrary: string }>();
   const { isLoggedIn } = useAuthContext();
   const [library, setLibrary] = useState<Library | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const token = localStorage.getItem("authToken");
 
   console.log("Auth token:", token);
 
   // Fetch library details
   const fetchLibrary = async (idLibrary: string) => {
+    setLoading(true);
     try {
       const response = await axios.get(`${API_URL}/libraries/${idLibrary}`, {
         headers: {
@@ -44,8 +46,10 @@ const LibraryDetailsPage = () => {
       });
       console.log("Fetched library:", response.data); // Debugging log
       setLibrary(response.data);
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching library:", error);
+      setLoading(false);
     }
   };
 
@@ -87,7 +91,7 @@ const LibraryDetailsPage = () => {
     return <p>You need to log in to view this page.</p>;
   }
 
-  if (!library) {
+  if (loading) {
     return (
       <>
         <div className="flex items-center justify-center my-4">
@@ -129,10 +133,14 @@ const LibraryDetailsPage = () => {
     );
   }
 
+  if (library === null) {
+    return <div>Error: Library data not available.</div>;
+  }
+
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="text-center mb-8">
-        <h1 className="text-balance text-4xl font-bold tracking-tight text-purple-800 sm:text-6xl w-[400x]">
+        <h1 className="text-balance text-4xl font-bold tracking-tight text-purple-800 sm:text-6xl w-[400px]">
           {library.name}
         </h1>
       </div>
@@ -144,19 +152,17 @@ const LibraryDetailsPage = () => {
         </Link>
       </div>
       {library.books.length < 1 && (
-        <>
-          <div className="flex flex-col justify-center items-center mt-32 space-y-8">
-            <h2 className="text-balance text-4xl font-normal tracking-tight text-orange-400 text-center max-w-[800px]">
-              Looks like your library is feeling a little lonely right now. Add
-              some books to start building your collection!
-            </h2>
-            <img
-              src={emptyLibraryImg}
-              alt="empty-state-photo"
-              className="max-w-md"
-            />
-          </div>
-        </>
+        <div className="flex flex-col justify-center items-center mt-32 space-y-8">
+          <h2 className="text-balance text-4xl font-normal tracking-tight text-orange-400 text-center max-w-[800px]">
+            Looks like your library is feeling a little lonely right now. Add
+            some books to start building your collection!
+          </h2>
+          <img
+            src={emptyLibraryImg}
+            alt="empty-state-photo"
+            className="max-w-md"
+          />
+        </div>
       )}
       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
         {library.books.map((book: Book) => (
