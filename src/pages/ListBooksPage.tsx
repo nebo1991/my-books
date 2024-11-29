@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
+import { Skeleton } from "@/components/ui/skeleton";
 const API_URL = import.meta.env.VITE_BOOKS_API;
 
 interface Book {
@@ -17,17 +18,63 @@ interface Book {
 const ListBooksPage = () => {
   const { isLoggedIn } = useAuthContext();
   const [books, setBook] = useState<Book[]>([]);
+  const [loading, setLoading] = useState<boolean>(true); // State to track loading
 
   const fetchBooks = async () => {
-    const response = await axios.get(`${API_URL}/books`);
-    setBook(response.data);
+    try {
+      const response = await axios.get(`${API_URL}/books`);
+      setBook(response.data);
+      setLoading(false); // Set loading to false once data is fetched
+    } catch (error) {
+      console.error("Error fetching books:", error);
+      setLoading(false); // In case of error, set loading to false
+    }
   };
 
   useEffect(() => {
     fetchBooks();
   }, []);
 
-  if (isLoggedIn)
+  if (loading) {
+    return (
+      <div>
+        <div className="flex items-center justify-center">
+          <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+            <Skeleton className="h-[300px] w-[225px] rounded-xl" />
+            <Skeleton className="h-[300px] w-[225px] rounded-xl" />
+            <Skeleton className="h-[300px] w-[225px] rounded-xl" />
+            <Skeleton className="h-[300px] w-[225px] rounded-xl" />
+          </div>
+        </div>
+        <div className="flex items-center justify-center">
+          <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+            <Skeleton className="h-[300px] w-[225px] rounded-xl" />
+            <Skeleton className="h-[300px] w-[225px] rounded-xl" />
+            <Skeleton className="h-[300px] w-[225px] rounded-xl" />
+            <Skeleton className="h-[300px] w-[225px] rounded-xl" />
+          </div>
+        </div>
+        <div className="flex items-center justify-center">
+          <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+            <Skeleton className="h-[300px] w-[225px] rounded-xl" />
+            <Skeleton className="h-[300px] w-[225px] rounded-xl" />
+            <Skeleton className="h-[300px] w-[225px] rounded-xl" />
+            <Skeleton className="h-[300px] w-[225px] rounded-xl" />
+          </div>
+        </div>
+        <div className="flex items-center justify-center">
+          <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+            <Skeleton className="h-[300px] w-[225px] rounded-xl" />
+            <Skeleton className="h-[300px] w-[225px] rounded-xl" />
+            <Skeleton className="h-[300px] w-[225px] rounded-xl" />
+            <Skeleton className="h-[300px] w-[225px] rounded-xl" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (isLoggedIn) {
     return (
       <>
         <div>
@@ -70,6 +117,9 @@ const ListBooksPage = () => {
         </div>
       </>
     );
+  }
+
+  return null; // In case the user is not logged in, return null or a placeholder
 };
 
 export default ListBooksPage;
