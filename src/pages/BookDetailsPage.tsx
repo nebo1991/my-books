@@ -117,18 +117,21 @@ const BookDetailsPage = () => {
         />
       </div>
       <div>
-        <h1 className="text-balance text-5xl font-semibold tracking-tight text-black sm:text-7xl text-left">
+        <h1 className="text-balance text-5xl font-semibold tracking-tight text-purple-800 sm:text-7xl text-left">
           {book.title}
         </h1>
-        <p className="mt-2 text-pretty text-2xl text-gray-600 text-left">
+        <p className="mt-4 text-pretty text-2xl text-gray-600 text-left">
           {book.author}
         </p>
-        <p className="mt-4 text-pretty text-xl font-medium text-gray-500 sm:text-xl/8 text-left">
+        <p className="mt-4 text-pretty text-2xl text-gray-600 text-left">
+          Pages: {book.pages}
+        </p>
+        <p className="mt-6 text-pretty text-xl font-medium text-gray-900 sm:text-xl/8 text-left">
           {book.description}
         </p>
         <div className="my-80">
           <dialog id="my_modal_3" className="modal bg-transparent">
-            <div className="modal-box bg-red-300 shadow-xl rounded-lg p-6">
+            <div className="modal-box bg-red-400 shadow-xl rounded-lg p-6">
               <form method="dialog">
                 <button
                   className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-white hover:text-gray-300 transition-transform transform hover:scale-110"

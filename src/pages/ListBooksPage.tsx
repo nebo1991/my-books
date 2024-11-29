@@ -65,22 +65,21 @@ const ListBooksPage = () => {
                           className="h-full w-full lg:h-full lg:w-full object-fill"
                         />
                       </div>
-                      <div className="mt-4 flex justify-between">
-                        <div>
-                          <h3 className="text-sm text-gray-700">
-                            <a>
-                              <span
-                                aria-hidden="true"
-                                className="absolute inset-0"
-                              />
-                              {book.title}
-                            </a>
-                          </h3>
-                          <div className="flex  items-baseline gap-20">
-                            <p className="mt-1 text-sm text-gray-500">
-                              {book.author}
-                            </p>
-                          </div>
+                      <div className="mt-4">
+                        <h3 className="text-sm font-semibold text-gray-700 text-left">
+                          <a>
+                            <span
+                              aria-hidden="true"
+                              className="absolute inset-0"
+                            />
+                            {book.title}
+                          </a>
+                        </h3>
+                        <div className="flex justify-between items-baseline">
+                          <p className="text-sm text-gray-500">{book.author}</p>
+                          <p className="text-sm text-gray-500">
+                            {book.pages} pages
+                          </p>
                         </div>
                       </div>
                     </div>
