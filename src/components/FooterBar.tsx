@@ -24,7 +24,7 @@ const FooterBar = () => {
         <div className="flex gap-4">
           <div>
             <a
-              href="https://json-server-production-ef6b.up.railway.app/books"
+              href="https://fortunate-curiosity-production.up.railway.app/"
               target="_blank"
             >
               {" "}
@@ -33,7 +33,7 @@ const FooterBar = () => {
           </div>
           <div>
             <a
-              href="https://github.com/nebo1991/all-about-the-books?tab=readme-ov-file#all-about-the-books"
+              href="https://github.com/nebo1991/my-books?tab=readme-ov-file#my-books"
               target="_blank"
             >
               <p className="text-black">Documentation</p>
