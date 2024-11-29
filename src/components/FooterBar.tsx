@@ -1,6 +1,3 @@
-import githubLogo from "../assets/github-logo.svg";
-
-import youtubeLogo from "../assets/youtube-logo.svg";
 import { Facebook, Github, Instagram, Youtube } from "lucide-react";
 
 const FooterBar = () => {
