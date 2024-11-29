@@ -87,11 +87,7 @@ const LibraryDetailsPage = () => {
     }
   }, [idLibrary]);
 
-  if (!isLoggedIn) {
-    return <p>You need to log in to view this page.</p>;
-  }
-
-  if (loading) {
+  if (isLoggedIn && loading) {
     return (
       <>
         <div className="flex items-center justify-center my-4">
@@ -134,7 +130,11 @@ const LibraryDetailsPage = () => {
   }
 
   if (library === null) {
-    return <div>Error: Library data not available.</div>;
+    return (
+      <div>
+        Error: In order to preview this library you have to be logged in.
+      </div>
+    );
   }
 
   return (
