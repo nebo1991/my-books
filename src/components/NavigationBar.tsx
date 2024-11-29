@@ -72,7 +72,6 @@ const NavigationBar = () => {
             <NavigationMenu className="bg-transparent hover:bg-transparent focus:bg-transparent">
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  {/* TODO: @nebo - Also conditional for different text once User is logged in. */}
                   <NavigationMenuTrigger className="bg-transparent">
                     <BookText className="h-6 w-6" />
                   </NavigationMenuTrigger>
