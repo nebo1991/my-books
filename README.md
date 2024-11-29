@@ -1,6 +1,61 @@
-# React + TypeScript + Vite
+# My Books
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## General Info
+
+"My Books" is a project that functions as a book club platform, where users can explore, add new books, write notes about about the books they've read.
+
+Technologies
+
+This project was built using the following technologies:
+
+Vite - https://vite.dev/
+
+React-ts - https://react.dev/
+
+Shadcn - https://ui.shadcn.com/
+
+Lucide - https://lucide.dev/
+
+React-toastify - https://fkhadra.github.io/react-toastify/introduction
+
+Tailwind CSS - https://tailwindcss.com/
+
+Uiball Loaders - https://uiball.com/ldrs/
+
+The backend is powered by: https://github.com/nebo1991/my-books-backend
+
+Server hosted on: https://railway.app/
+
+Web App hosted on: https://www.netlify.com/
+
+Getting Started
+Clone the repository to your local machine:
+
+git clone git@github.com:nebo1991/my-books.git
+
+Install all dependencies (make sure Node.js is installed on your machine):
+
+npm install
+
+Start the project:
+
+npm run dev
+
+Project Structure
+The source folder contains three main subfolders: Pages, Components, and Assets.
+
+Assets
+This folder stores all the assets used on the webpage.
+
+Components
+This folder contains all the reusable components.
+
+Pages
+This folder contains all the page components.
+
+## Additional:
+
+This template provides a minimal setup to get React-ts working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
 
@@ -18,11 +73,11 @@ export default tseslint.config({
   languageOptions: {
     // other options...
     parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
       tsconfigRootDir: import.meta.dirname,
     },
   },
-})
+});
 ```
 
 - Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
@@ -31,11 +86,11 @@ export default tseslint.config({
 
 ```js
 // eslint.config.js
-import react from 'eslint-plugin-react'
+import react from "eslint-plugin-react";
 
 export default tseslint.config({
   // Set the react version
-  settings: { react: { version: '18.3' } },
+  settings: { react: { version: "18.3" } },
   plugins: {
     // Add the react plugin
     react,
@@ -44,7 +99,7 @@ export default tseslint.config({
     // other rules...
     // Enable its recommended rules
     ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
+    ...react.configs["jsx-runtime"].rules,
   },
-})
+});
 ```
