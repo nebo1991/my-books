@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "react-toastify";
+import emptyLibraryImg from "../assets/empty.png";
 const API_URL = import.meta.env.VITE_BOOKS_API;
 
 interface Book {
@@ -137,11 +138,26 @@ const LibraryDetailsPage = () => {
       </div>
       <div className="flex justify-end">
         <Link to="/notes">
-          <button className="btn btn-circle btn-outline border-solid border-transparent hover:bg-purple-300">
-            Notes and Quotes
+          <button className="btn btn-circle btn-outline border-solid border-transparent hover:bg-purple-300 text-purple-500">
+            Notes & Quotes
           </button>
         </Link>
       </div>
+      {library.books.length < 1 && (
+        <>
+          <div className="flex flex-col justify-center items-center mt-32 space-y-8">
+            <h2 className="text-balance text-4xl font-normal tracking-tight text-orange-400 text-center max-w-[800px]">
+              Looks like your library is feeling a little lonely right now. Add
+              some books to start building your collection!
+            </h2>
+            <img
+              src={emptyLibraryImg}
+              alt="empty-state-photo"
+              className="max-w-md"
+            />
+          </div>
+        </>
+      )}
       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
         {library.books.map((book: Book) => (
           <div key={book.id} className="group relative">
