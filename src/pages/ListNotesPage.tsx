@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
+import notePhoto from "../assets/note.png";
 
 const API_URL = import.meta.env.VITE_BOOKS_API;
 
@@ -34,6 +35,9 @@ const ListNotesPage = () => {
     return (
       <>
         <div>
+          <div className="flex justify-center items-center">
+            <img src={notePhoto} alt="note-photo" className="h-80" />
+          </div>
           <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
             <div className="flex justify-end">
               <Link to="/notes/add-new">
@@ -74,8 +78,8 @@ const ListNotesPage = () => {
                                 aria-hidden="true"
                                 className="absolute inset-0"
                               />
-                              {note.title.length > 80
-                                ? `${note.description.substring(0, 80)}...`
+                              {note.description.length > 40
+                                ? `${note.description.substring(0, 36)}...`
                                 : note.description}
                             </a>
                           </h3>

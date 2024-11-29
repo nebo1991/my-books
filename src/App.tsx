@@ -20,8 +20,8 @@ function App() {
   return (
     <>
       <div className="flex flex-col min-h-screen">
-        <NavigationBar />
         <div className="flex-grow">
+          <NavigationBar />
           <Routes>
             <Route path="/about-us" element={<AboutUsPage />} />
             <Route path="/" element={<HomePage />} />
